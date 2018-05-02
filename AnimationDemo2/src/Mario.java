@@ -16,7 +16,7 @@ public class Mario extends Sprite {
 
 	// METHODS
 	public void walk(int dir) {
-		moveByAmount(dir, 0);
+		// WALK!
 	}
 
 	public void jump() {
@@ -25,16 +25,6 @@ public class Mario extends Sprite {
 
 	public void act(ArrayList<Shape> obstacles) {
 		// FALL (and stop when a platform is hit)
-		y += 2;
-		boolean onGround = false;
-		for(Shape s : obstacles) {
-			if(s.intersects(this)) {
-				onGround = true;
-				break;
-			}
-		}
-		if(onGround)
-			y -= 2;
 	}
 
 
