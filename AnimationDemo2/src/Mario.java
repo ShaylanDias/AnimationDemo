@@ -23,6 +23,7 @@ public class Mario extends Sprite {
 	// METHODS
 	public void walk(int dir) {
 		// MOVES it left and right only
+		if(!touchingWall)
 		moveByAmount(dir * 5, 0);
 	}
 
@@ -45,7 +46,7 @@ public class Mario extends Sprite {
 		for(Shape s : obstacles) {
 			if(s.intersects(this)) {
 				
-				if(this.y > s.getBounds().getY()) {
+				if(this.y < s.getBounds().getY()) {
 					onGround = true;
 					break;
 				}
@@ -57,16 +58,13 @@ public class Mario extends Sprite {
 			y -= yVel;
 			yVel = 0;
 			this.onGround = true;
-			this.touchingWall = false;
-		}
-		else if(touchingWall) {
-			this.touchingWall = true;
 		}
 		else {
 			this.onGround = false;
-			this.touchingWall = false;
 		}
-			
+		
+		this.touchingWall = touchingWall;
+		System.out.println(touchingWall);
 	}
 
 
