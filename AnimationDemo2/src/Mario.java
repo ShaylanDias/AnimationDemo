@@ -12,10 +12,12 @@ public class Mario extends Sprite {
 	
 	private double yVel;
 	private final double grav = 0.2;
+	private boolean onGround;
 
 	public Mario(PImage img, int x, int y) {
 		super(img, x, y, MARIO_WIDTH, MARIO_HEIGHT);
 		yVel = 0;
+		onGround = false;
 	}
 
 	// METHODS
@@ -46,7 +48,10 @@ public class Mario extends Sprite {
 		if(onGround) {
 			y -= yVel;
 			yVel = 0;
+			this.onGround = true;
 		}
+		else
+			this.onGround = false;
 	}
 
 
