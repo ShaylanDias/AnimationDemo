@@ -57,6 +57,7 @@ public class Mario extends Sprite {
 			y -= yVel;
 			yVel = 0;
 			this.onGround = true;
+			this.touchingWall = false;
 		}
 		else if(touchingWall) {
 			this.touchingWall = true;
