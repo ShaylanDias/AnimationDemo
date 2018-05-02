@@ -9,9 +9,13 @@ public class Mario extends Sprite {
 
 	public static final int MARIO_WIDTH = 40;
 	public static final int MARIO_HEIGHT = 60;
+	
+	private double yVel;
+	private final double grav = 0.2;
 
 	public Mario(PImage img, int x, int y) {
 		super(img, x, y, MARIO_WIDTH, MARIO_HEIGHT);
+		yVel = 0;
 	}
 
 	// METHODS
@@ -27,7 +31,11 @@ public class Mario extends Sprite {
 
 	public void act(ArrayList<Shape> obstacles) {
 		// FALL (and stop when a platform is hit)
-		y += 2;
+		
+		if(yVel + grav < 5)
+			yVel += grav;
+		
+		y += yVel;
 		boolean onGround = false;
 		for(Shape s : obstacles) {
 			if(s.intersects(this)) {
@@ -35,8 +43,10 @@ public class Mario extends Sprite {
 				break;
 			}
 		}
-		if(onGround)
-			y -= 2;
+		if(onGround) {
+			y -= yVel;
+			yVel = 0;
+		}
 	}
 
 
